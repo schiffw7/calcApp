@@ -1,1 +1,145 @@
-test
+<!DOCTYPE html>
+<html lang ="en">
+<style>
+
+.container {  display: grid;
+  grid-template-columns: 1.9fr 0.7fr 0.1fr 1.3fr;
+  grid-template-rows: 0.1fr 2.3fr 0.8fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "calc result . history"
+    ". . . history"
+    ". . . .";
+}
+
+.calc { grid-area: calc; }
+
+.result { grid-area: result; }
+
+.history { grid-area: history; }
+
+
+</style>
+<head>
+    <title>Calculator</title>
+</head>
+<body>
+    <div class="container">
+        <div class="history">
+            <h1>History</h1>
+            <div id="historyDiv">
+
+            </div>
+        </div>
+        <div class="result">
+            <div id="resultDiv">
+
+            </div>
+        </div>
+        <div class="calc">
+            <label for="num1">First Number</label>
+            <input id="num1" type="text" placeholder="0" oninput="setNum1(event)">
+
+            <label for="num2">Second Number</label>
+            <input id="num2" type="text" placeholder="0" oninput="setNum2(event)">
+
+            <button onclick="Add(event);HistAdd(event)">Add</button>
+            <button onclick="Subtract(event);HistSub(event)">Subtract</button>
+            <button onclick="Multiply(event);HistMult(event)">Multiply</button>
+            <button onclick="Divide(event);HistDiv(event)">Divide</button>
+        </div>
+      </div>
+
+</body>
+<script>
+    let num1 = "";
+    function setNum1(event = new Event()){
+        num1 = parseInt(event.target.value);
+    }
+
+    let num2 = "";
+    function setNum2(event = new Event()){
+        num2 = parseInt(event.target.value);
+    }
+
+    function Add(event = Event()){
+        const resultDiv = document.getElementById("resultDiv");
+        
+        const heading = document.createElement("h1");
+        
+        heading.innerText = num1+num2;
+        
+        resultDiv.innerHTML="";
+        resultDiv.appendChild(heading);
+    }
+
+    function Subtract(event = Event()){
+        const resultDiv = document.getElementById("resultDiv");
+
+        const heading = document.createElement("h1");
+        heading.innerText = num1-num2;
+        
+        resultDiv.innerHTML="";
+        resultDiv.appendChild(heading);
+    }
+
+    function Multiply(event = Event()){
+        const resultDiv = document.getElementById("resultDiv");
+
+        const heading = document.createElement("h1");
+        heading.innerText = num1*num2;
+        
+        resultDiv.innerHTML="";
+        resultDiv.appendChild(heading);
+    }
+
+    function Divide(event = Event()){
+        const resultDiv = document.getElementById("resultDiv");
+
+        const heading = document.createElement("h1");
+        heading.innerText = num1/num2;
+        
+        resultDiv.innerHTML="";
+        resultDiv.appendChild(heading);
+    }
+
+    function HistAdd(event = Event()){
+        const historyDiv = document.getElementById("historyDiv");
+
+        const heading = document.createElement("h2");
+        heading.innerText = num1 + " + " + num2 + " = " + (parseInt(num1)+parseInt(num2))
+        historyDiv.appendChild(heading);
+    }
+
+    function HistSub(event = Event()){
+        const historyDiv = document.getElementById("historyDiv");
+
+        const heading = document.createElement("h2");
+        heading.innerText = num1 + " - " + num2 + " = " + (parseInt(num1)-parseInt(num2))
+        historyDiv.appendChild(heading);
+    }
+
+    function HistMult(event = Event()){
+        const historyDiv = document.getElementById("historyDiv");
+
+        const heading = document.createElement("h2");
+        heading.innerText = num1 + " * " + num2 + " = " + (parseInt(num1)*parseInt(num2))
+        historyDiv.appendChild(heading);
+    }
+
+    function HistDiv(event = Event()){
+        const historyDiv = document.getElementById("historyDiv");
+
+        const heading = document.createElement("h2");
+        heading.innerText = num1 + " / " + num2 + " = " + (parseInt(num1)/parseInt(num2))
+        historyDiv.appendChild(heading);
+    }
+
+
+
+</script>
+
+
+
+</html>
